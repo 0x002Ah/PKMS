@@ -40,8 +40,9 @@ The exact root path is the user's choice; the split is what matters.
 - Never read or written by code that does not need them.
 
 ### artifacts/
-- Heavy or generated local files: model caches, embeddings, exports, attachments, transcripts.
+- Disposable PKMS runtime byproducts only: model caches, embeddings, generated exports, derived transcripts, temporary attachments, and similar operational outputs.
 - Reproducible from inbox + vault + software, so it is safe to delete and rebuild.
+- Not a store for durable work products, canonical outputs, signed documents, decisions, source materials, or evidence-bearing artifacts. Those belong in a separate, explicitly governed location.
 
 ## Data flow
 
