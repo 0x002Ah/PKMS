@@ -25,8 +25,8 @@ is_blocked_path() {
     local f=$1
     case "$f" in
         # Private PKMS subtrees that must never live inside this repo.
-        vault/*|inbox/*|secrets/*|artifacts/*|attachments/*|raw/*|private/*) return 0 ;;
-        tokens/*|credentials/*|exports/*|downloads/*|logs/*|tmp/*|temp/*)    return 0 ;;
+        vault/*|inbox/*|secrets/*|artifacts/*|config/*|attachments/*|raw/*|private/*) return 0 ;;
+        tokens/*|credentials/*|exports/*|downloads/*|logs/*|tmp/*|temp/*)             return 0 ;;
         # dotenv files anywhere in the tree.
         .env|.env.*|*/.env|*/.env.*) return 0 ;;
         # macOS finder noise.
