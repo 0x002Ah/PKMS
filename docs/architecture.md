@@ -66,6 +66,16 @@ connector ──► inbox/  ──► agent triage ──► vault/
 
 Secrets are injected into connectors and agents at runtime; they never flow into inbox, vault, or artifacts.
 
+## Knowledge substrate
+
+The canonical PKMS knowledge substrate is **markdown in git**. Notes are plain text files in version-controlled directories; durable meaning lives in those files and in their history.
+
+Any runtime memory system — vector database, graph database, agent memory provider, embedding index, in-memory cache, or API-backed memory service — is a **derived artifact** unless explicitly promoted by protocol. Derived artifacts belong in `artifacts/`, are reproducible from `inbox/` + `vault/` + `software/`, and can be deleted and rebuilt without losing user-owned meaning.
+
+Durable user-owned meaning must remain **readable, inspectable, version-controlled, and portable** without a specific vendor or service. Anything that fails any of those four tests does not qualify as durable substrate.
+
+Smart memory layers — retrieval, user modeling, belief tracking, agent continuity, and similar — may be added later. They serve the substrate, not replace it: they must not become the only place where knowledge exists, and they must be rebuildable from the markdown-in-git substrate plus the protocols that govern their promotion.
+
 ## Why this split
 
 - **Blast radius.** A mistake in `software/` cannot leak private content because private content is not here.
