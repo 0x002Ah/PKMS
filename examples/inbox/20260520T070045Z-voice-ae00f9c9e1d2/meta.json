@@ -1,0 +1,12 @@
+{
+  "spec_version": "inbox/v1",
+  "source": "voice",
+  "source_ref": "recording-2026-05-20-07-00-45",
+  "captured_at": "2026-05-20T07:00:45Z",
+  "content_type": "audio/m4a",
+  "attachments": ["attachments/recording.m4a.stub.md"],
+  "source_metadata": {
+    "device": "example-recorder",
+    "duration_seconds": 47
+  }
+}

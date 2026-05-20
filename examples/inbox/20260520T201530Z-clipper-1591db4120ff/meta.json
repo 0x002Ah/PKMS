@@ -1,0 +1,14 @@
+{
+  "spec_version": "inbox/v1",
+  "source": "clipper",
+  "source_ref": "https://www.inkandswitch.com/local-first/",
+  "captured_at": "2026-05-20T20:15:30Z",
+  "content_type": "text/uri-list",
+  "tags": ["reading", "local-first"],
+  "body_format": "clipping",
+  "source_metadata": {
+    "url": "https://www.inkandswitch.com/local-first/",
+    "title": "Local-first software",
+    "site": "inkandswitch.com"
+  }
+}

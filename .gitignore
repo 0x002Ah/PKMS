@@ -50,13 +50,14 @@ yarn-error.log*
 .pnpm-store/
 
 # local data accidentally copied into software/
-inbox/
-raw/
-artifacts/
-attachments/
-exports/
-downloads/
-config/
+# anchored to repo root so examples/ may reference these names
+/inbox/
+/raw/
+/artifacts/
+/attachments/
+/exports/
+/downloads/
+/config/
 
 # large files by default
 *.zip
