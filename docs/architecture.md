@@ -70,7 +70,7 @@ Secrets are injected into connectors and agents at runtime; they never flow into
 
 The canonical PKMS knowledge substrate is **markdown in git**. Notes are plain text files in version-controlled directories; durable meaning lives in those files and in their history.
 
-Any runtime memory system — vector database, graph database, agent memory provider, embedding index, in-memory cache, or API-backed memory service — is a **derived artifact** unless explicitly promoted by protocol. Derived artifacts belong in `artifacts/`, are reproducible from `inbox/` + `vault/` + `software/`, and can be deleted and rebuilt without losing user-owned meaning.
+Any runtime memory system — vector database, graph database, agent memory provider, embedding index, in-memory cache, or API-backed memory service — is a **derived artifact** unless explicitly promoted by protocol. Derived runtime stores do not all have to live in the same place: small generated outputs may live under `artifacts/`, while larger service state, indexes, vector stores, or database volumes should live in local runtime / index directories **outside this public repo**. In every case they remain reproducible from `inbox/` + `vault/` + `software/`, disposable, and non-canonical unless explicitly promoted by protocol.
 
 Durable user-owned meaning must remain **readable, inspectable, version-controlled, and portable** without a specific vendor or service. Anything that fails any of those four tests does not qualify as durable substrate.
 
