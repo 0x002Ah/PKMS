@@ -39,6 +39,21 @@ examples/  example inputs, configs, and walkthroughs
 tests/     tests
 ```
 
+## Local setup
+
+After cloning, install the local pre-commit guard so accidental commits of
+secrets, private PKMS content, or large binaries are refused before they leave
+your machine:
+
+```sh
+./scripts/install_hooks.sh
+```
+
+This writes `.git/hooks/pre-commit`, which delegates to
+[`scripts/precommit_guard.sh`](scripts/precommit_guard.sh). The guard inspects
+only staged files, performs filename/path/size checks (no content scanning, no
+dependencies), and can be bypassed in an emergency with `git commit --no-verify`.
+
 ## For agents working in this repo
 
 Read [`AGENTS.md`](AGENTS.md) (and [`CLAUDE.md`](CLAUDE.md) if you are Claude Code) before making changes.
