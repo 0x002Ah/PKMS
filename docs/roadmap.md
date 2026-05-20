@@ -12,40 +12,38 @@ Staged milestones for PKMS. Each milestone is intentionally small and inspectabl
 
 **Done when:** an agent can read the repo cold and know what may and may not be added.
 
-## M1 — Local capture/inbox convention
+## M1 — Capture contract
 
-- Define the on-disk format for raw captures in the local `inbox/` directory (outside this repo).
-- Pick file naming, metadata (source, timestamp, content type), and directory layout.
-- Document the contract in `docs/` so future connectors can target it without coordination.
-- Provide an `examples/` walkthrough using fake captures only.
+- Capture surfaces: personal Telegram bot, bulk imports, manual drops.
+- All captures land in the local `inbox/` directory in the format defined by `docs/inbox-format.md`.
+- **Raw preservation is the contract.** Items in `inbox/` are not rewritten or deleted by the capture path.
 
-**Done when:** a new connector can be written against the spec without reading any other connector's code.
+**Done when:** the chosen capture surfaces produce well-formed inbox entries and any raw item can be recovered byte-for-byte after the fact.
 
-## M2 — Telegram capture connector
+## M2 — Triage contract
 
-- Implement a connector that receives messages from a personal Telegram bot and writes them to `inbox/` in the M1 format.
-- Credentials live in local `secrets/`, never in this repo.
-- Connector is a small, restartable local process.
-- Tests use recorded fixtures, not live API calls.
+- Agent reads from `inbox/` and produces **derived markdown** in the vault: a note, list update, entity record, or project update.
+- The raw inbox item is left intact; nothing is silently deleted, and rejections are logged.
+- The promotion rule — what becomes durable markdown knowledge and what stays raw — is documented alongside the triage logic.
 
-**Done when:** sending a message to the bot reliably produces a well-formed inbox entry.
+**Done when:** a triage session reliably produces vault-quality markdown from inbox items without losing the raw source, and the promotion rule is written down.
 
-## M3 — Agent-assisted triage
+## M3 — Retrieval over markdown
 
-- Agent reads new items from `inbox/`, proposes classification and routing, and asks the user for confirmation.
-- Triaged items are moved to a holding area or rejected; nothing is silently deleted.
-- Triage decisions are logged locally in a form the user can review.
+- First implementation: plain-text retrieval using `grep` / `ripgrep` over the vault, plus Obsidian's built-in search.
+- Add a smarter layer only if practical pain shows up — a simple local indexer, or GBrain as an agent-agnostic knowledge layer.
+- Smart retrieval is **additive**: per `docs/architecture.md`, the markdown substrate remains the source of truth.
 
-**Done when:** the user can clear an inbox of mixed items in one short triage session, with the agent doing the heavy lifting.
+**Done when:** the user can find any vault note within seconds via the plain-text path, and the trigger for adding a smarter layer is written down.
 
-## M4 — Obsidian / vault integration
+## M4 — Agent memory experiments
 
-- Triaged items are written into the user's vault in a format Obsidian understands (Markdown + frontmatter, wikilinks, attachments).
-- Vault path is configured locally; this repo holds no vault content.
-- Round-trip: an item captured via M2, triaged via M3, lands as a usable note in the vault.
+- Evaluate runtime memory providers (e.g. Honcho, Mem0, Hindsight) as a layer **on top of** the accumulated markdown substrate.
+- Per `docs/architecture.md`, any such provider is a derived artifact — rebuildable from `inbox/` + `vault/` + `software/`.
+- Compare providers on retrieval quality, continuity across sessions, and inspectability.
 
-**Done when:** the full pipeline — capture → inbox → triage → vault — works end-to-end on the user's machine.
+**Done when:** at least one memory provider is integrated against the existing markdown corpus and a written comparison documents its fit and trade-offs.
 
 ## Beyond M4
 
-Out of scope for now. Likely candidates once the core loop is solid: voice capture, web clipper, search/retrieval over the vault, periodic review agents. None of these are committed.
+Memory providers may compete for the Archivist / runtime-memory role, but canonical identity and memory ethics require a **durable substrate plus a documented promotion protocol**. No runtime memory layer may become the only place where knowledge exists. None of these later directions are committed yet.
