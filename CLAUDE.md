@@ -19,6 +19,7 @@ Claude Code instructions for this repository. Read `AGENTS.md` first — those r
 - Always run `git status` and summarize the staged changes before committing.
 - Never `git add -A` or `git add .` blindly — stage specific paths so we cannot accidentally include private files from sibling directories.
 - Never commit anything matching `.gitignore` patterns (secrets, credentials, raw captures, large binaries).
+- Respect the pre-commit guard installed via `scripts/install_hooks.sh`. Do not bypass it with `--no-verify`.
 
 ## When unsure
 

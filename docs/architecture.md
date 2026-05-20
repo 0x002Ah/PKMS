@@ -26,6 +26,7 @@ The exact root path is the user's choice; the split is what matters.
 ### vault/
 - The user's curated personal knowledge base (e.g. an Obsidian vault).
 - Written to deliberately, after triage. Source of truth for refined notes.
+- Typically kept as its own private git repository on the user's machine. It is never a submodule, remote, or dependency of this repo.
 - Private. Never referenced by absolute path from this repo.
 
 ### inbox/
