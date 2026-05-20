@@ -10,7 +10,9 @@ PKMS is split across several local directories on the user's machine. Only one o
 ├── vault/       <- private knowledge content
 ├── inbox/       <- raw captures from connectors
 ├── secrets/     <- credentials and tokens
-└── artifacts/   <- heavy or generated local files
+├── artifacts/   <- heavy or generated local files
+├── config/      <- local non-secret configuration
+└── logs/        <- durable operational records
 ```
 
 The exact root path is the user's choice; the split is what matters.
@@ -43,6 +45,16 @@ The exact root path is the user's choice; the split is what matters.
 - Disposable PKMS runtime byproducts only: model caches, embeddings, generated exports, derived transcripts, temporary attachments, and similar operational outputs.
 - Reproducible from inbox + vault + software, so it is safe to delete and rebuild.
 - Not a store for durable work products, canonical outputs, signed documents, decisions, source materials, or evidence-bearing artifacts. Those belong in a separate, explicitly governed location.
+
+### config/
+- Local, non-secret configuration consumed by connectors, agents, and any future memory/index layer.
+- Plain text (TOML / YAML / JSON / `.env.example`): paths, feature flags, layer wiring, named profiles.
+- Machine-specific and hand-edited. Never holds credentials — those stay in `secrets/`.
+
+### logs/
+- Durable operational records: agent and connector decisions, triage outcomes, run summaries, error reports.
+- Append-only and user-reviewable. Distinct from `artifacts/` because these records are not disposable.
+- Holds no raw captured content (that stays in `inbox/`) and no curated knowledge (that goes to `vault/`).
 
 ## Data flow
 

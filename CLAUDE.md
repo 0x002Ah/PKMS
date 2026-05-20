@@ -4,7 +4,7 @@ Claude Code instructions for this repository. Read `AGENTS.md` first — those r
 
 ## Before you act
 
-- This repo is **public-safe software only**. Private vault, inbox, secrets, and artifacts live elsewhere on the local machine. Never copy them in.
+- This repo is **public-safe software only**. Private vault, inbox, secrets, artifacts, config, and logs live elsewhere on the local machine. Never copy them in.
 - The repo is at milestone **M0 — scaffold** (see `docs/roadmap.md`). Do not pre-build later milestones (e.g. the Telegram connector) without being asked.
 
 ## How to work here

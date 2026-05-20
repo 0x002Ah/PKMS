@@ -15,8 +15,9 @@ Private content and runtime data live elsewhere on the local machine and must ne
 - **vault** — private knowledge content
 - **inbox** — raw captures from connectors
 - **secrets** — credentials, tokens, API keys
-- **artifacts** — heavy or generated local files
-- runtime logs, caches, and temporary files
+- **artifacts** — disposable runtime byproducts (caches, derived data)
+- **config** — local, non-secret configuration
+- **logs** — durable operational records
 
 See [`docs/architecture.md`](docs/architecture.md) for the full split and [`docs/roadmap.md`](docs/roadmap.md) for staged milestones.
 

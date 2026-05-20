@@ -11,8 +11,9 @@ The following live **outside** this repo on the local machine and must never be 
 - `vault/` — private knowledge content
 - `inbox/` — raw captures
 - `secrets/` — credentials, tokens, API keys
-- `artifacts/` — heavy or generated local files
-- runtime logs and caches
+- `artifacts/` — disposable runtime byproducts (caches, derived data)
+- `config/` — local, non-secret configuration
+- `logs/` — durable operational records
 
 See `docs/architecture.md` for the full split.
 
