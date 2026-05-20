@@ -36,7 +36,15 @@ Staged milestones for PKMS. Each milestone is intentionally small and inspectabl
 
 **Done when:** the user can find any vault note within seconds via the plain-text path, and the trigger for adding a smarter layer is written down.
 
-## M4 — Agent memory experiments
+## M4 — Obsidian / vault integration
+
+- Derived markdown from M2 is written in a format Obsidian understands: Markdown plus frontmatter, wikilinks where appropriate, and linked attachments.
+- The vault path is configured locally; this repo holds no vault content.
+- Round-trip integrity: an item captured via M1, triaged via M2, lands as a usable note in the vault and is findable via M3 retrieval.
+
+**Done when:** the full pipeline — capture → inbox → triage → vault — works end-to-end on the user's machine and produces notes the user is happy to keep.
+
+## M5 — Agent memory experiments
 
 - Evaluate runtime memory providers (e.g. Honcho, Mem0, Hindsight) as a layer **on top of** the accumulated markdown substrate.
 - Per `docs/architecture.md`, any such provider is a derived artifact — rebuildable from `inbox/` + `vault/` + `software/`.
@@ -44,6 +52,6 @@ Staged milestones for PKMS. Each milestone is intentionally small and inspectabl
 
 **Done when:** at least one memory provider is integrated against the existing markdown corpus and a written comparison documents its fit and trade-offs.
 
-## Beyond M4
+## Beyond M5
 
 Memory providers may compete for the Archivist / runtime-memory role, but canonical identity and memory ethics require a **durable substrate plus a documented promotion protocol**. No runtime memory layer may become the only place where knowledge exists. None of these later directions are committed yet.
