@@ -1,25 +1,30 @@
 # Local PKMS Environment Instructions
 
-This file is a **template**. Copy it to `~/PKMS/CLAUDE.md` (or whichever path
-you chose for your local PKMS root). It tells any agent how to behave when
-working in the local environment that surrounds this repository.
+This file is a **template**.
+Copy it to `~/PKMS/CLAUDE.md` (or whichever path you chose for your local
+PKMS root).
+It tells any agent how to behave when working in the local environment that
+surrounds this repository.
 
 Adapt machine-specific notes if your layout diverges, but keep the privacy
-boundaries and operating modes intact — they are what makes the local layout
-safe.
+boundaries and operating modes intact.
+They are what makes the local layout safe.
 
 ## Repositories and boundaries
 
 - `software/` — the public PKMS software repository (this codebase, cloned
   locally).
-- `vault/` — private curated personal knowledge. Likely a separate private
-  repository on the same machine. Never copy its content into `software/`.
-- `inbox/` — local raw captures in the `inbox/v1` format. Never committed to
-  `software/`.
-- `secrets/` — credentials, tokens, API keys. **Agents must never read, print,
-  copy, summarize, or commit anything from here.**
+- `vault/` — private curated personal knowledge.
+  Likely a separate private repository on the same machine.
+  Never copy its content into `software/`.
+- `inbox/` — local raw captures in the `inbox/v1` format.
+  Never committed to `software/`.
+- `secrets/` — credentials, tokens, API keys.
+  **Agents must never read, print, copy, summarize, or commit anything from
+  here.**
 - `artifacts/` — disposable PKMS runtime byproducts (caches, derived data).
-- `config/` — local, non-secret configuration. Machine-specific.
+- `config/` — local, non-secret configuration.
+  Machine-specific.
 - `logs/` — durable operational records (decision logs, run summaries).
 
 See `software/docs/architecture.md` for the full rationale behind the split.
