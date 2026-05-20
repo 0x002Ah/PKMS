@@ -36,4 +36,4 @@ See `docs/architecture.md` for the full split.
 
 ## Current milestone
 
-See `docs/roadmap.md`. The repo is at **M0 — scaffold**. Do not implement connectors (e.g. Telegram) until their milestone is reached.
+See `docs/roadmap.md`. The repo is at **M1 — inbox capture contract**: the format is documented in `docs/inbox-format.md` with fake examples under `examples/inbox/`. There is no runtime code yet. Do not implement connectors (e.g. Telegram) until M2.

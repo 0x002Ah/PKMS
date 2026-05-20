@@ -61,4 +61,7 @@ Read [`AGENTS.md`](AGENTS.md) (and [`CLAUDE.md`](CLAUDE.md) if you are Claude Co
 
 ## Status
 
-Milestone **M0 — repository scaffold**. See [`docs/roadmap.md`](docs/roadmap.md).
+Milestone **M1 — inbox capture contract**. The on-disk capture format is
+defined in [`docs/inbox-format.md`](docs/inbox-format.md), with fake examples
+under [`examples/inbox/`](examples/inbox/). No runtime code yet — see
+[`docs/roadmap.md`](docs/roadmap.md) for staged milestones.

@@ -9,28 +9,32 @@ all read against this spec. Do not deviate without bumping `spec_version`.
 One capture is one directory under `inbox/`:
 
 ```
-inbox/<YYYYMMDDTHHMMSSZ>-<source>-<short_id>/
+inbox/{timestamp}-{source}-{short_id}/
 ├── body.md          required — human-readable content of the capture
 ├── meta.json        required — machine metadata
 └── attachments/     optional — original binaries, only when needed
 ```
 
-- `<YYYYMMDDTHHMMSSZ>` — UTC timestamp in ISO 8601 basic format (no separators).
-- `<source>` — lowercase short identifier of the producing connector.
-- `<short_id>` — first 12 hex characters of `sha256("<source>:<source_ref>")`. Deterministic from the upstream item, so a retry produces an identical directory name and natural deduplication.
+- `{timestamp}` — UTC capture time in ISO 8601 basic format (no separators),
+  e.g. `20260520T143012Z`.
+- `{source}` — lowercase short identifier of the producing connector
+  (e.g. `manual`, `telegram`, `voice`).
+- `{short_id}` — first 12 hex characters of `sha256("{source}:{source_ref}")`.
+  Deterministic from the upstream item, so a retry produces an identical
+  directory name and natural deduplication.
 
 Capture directories sit flat at the top of `inbox/`. No date-tree or
-source-tree at this milestone — `inbox/` is a transient queue; items move out
-during triage rather than accumulating.
+source-tree at this milestone — `inbox/` is a transient queue; items move
+out during triage rather than accumulating.
 
 ## `body.md`
 
-Human-readable content of the capture. Always present, even when the canonical
-content is binary (in which case `body.md` is a brief stub describing or
-transcribing it).
+Human-readable content of the capture. Always present, even when the
+canonical content is binary (in which case `body.md` is a brief stub
+describing or transcribing it).
 
-Plain Markdown. **No YAML frontmatter** — all metadata lives in `meta.json` so
-there is exactly one source of truth.
+Plain Markdown. **No YAML frontmatter** — all metadata lives in `meta.json`
+so there is exactly one source of truth.
 
 ## `meta.json`
 
@@ -42,7 +46,7 @@ Strict JSON, UTF-8, one object.
 |----------------|--------|-------|
 | `spec_version` | string | Always `"inbox/v1"` for this revision. |
 | `source`       | string | Lowercase identifier of the producing connector (e.g. `"telegram"`, `"voice"`, `"manual"`). |
-| `source_ref`   | string | Opaque, connector-defined reference to the upstream item. `<source>` + `<source_ref>` uniquely identifies the capture across the PKMS. |
+| `source_ref`   | string | Opaque, connector-defined reference to the upstream item. `{source}` + `{source_ref}` uniquely identifies the capture across the PKMS. |
 | `captured_at`  | string | ISO 8601 UTC timestamp of when the connector observed the item, e.g. `"2026-05-20T14:30:12Z"`. |
 | `content_type` | string | MIME type describing the canonical content of the capture (see below). |
 
@@ -66,13 +70,13 @@ file format.
 - `image/jpeg`, `image/png` — image captures.
 - `application/pdf` — PDF captures.
 
-When the canonical content is binary, the binary lives under `attachments/` and
-`body.md` is a short stub.
+When the canonical content is binary, the binary lives under `attachments/`
+and `body.md` is a short stub.
 
 ## Atomicity
 
-Connectors write the capture package to a temporary directory (e.g.
-`inbox/.tmp-<short_id>/`) and `rename` it into place once `body.md`,
+Connectors write the capture package to a temporary directory
+(e.g. `inbox/.tmp-{short_id}/`) and `rename` it into place once `body.md`,
 `meta.json`, and any `attachments/` are fully written. Triage tools must not
 observe partially-written captures.
 
@@ -82,7 +86,7 @@ Deliberately not part of this spec. Adding any of these requires a
 `spec_version` bump:
 
 - **Triage state.** Triage moves files out of `inbox/`; it does not mutate them in place.
-- **Memory/index layer fields.** Embeddings, vector ids, derived scores. Any memory layer keys on `<source>:<source_ref>` plus `captured_at` and stores its own derivatives externally.
+- **Memory/index layer fields.** Embeddings, vector ids, derived scores. Any memory layer keys on `{source}:{source_ref}` plus `captured_at` and stores its own derivatives externally.
 - **Connector-specific top-level fields.** Keep them inside `source_metadata`.
 
 ## Examples
