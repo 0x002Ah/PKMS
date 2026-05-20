@@ -10,10 +10,14 @@ safe.
 
 ## Repositories and boundaries
 
-- `software/` — the public PKMS software repository (this codebase, cloned locally).
-- `vault/` — private curated personal knowledge. Likely a separate private repository on the same machine. Never copy its content into `software/`.
-- `inbox/` — local raw captures in the `inbox/v1` format. Never committed to `software/`.
-- `secrets/` — credentials, tokens, API keys. **Agents must never read, print, copy, summarize, or commit anything from here.**
+- `software/` — the public PKMS software repository (this codebase, cloned
+  locally).
+- `vault/` — private curated personal knowledge. Likely a separate private
+  repository on the same machine. Never copy its content into `software/`.
+- `inbox/` — local raw captures in the `inbox/v1` format. Never committed to
+  `software/`.
+- `secrets/` — credentials, tokens, API keys. **Agents must never read, print,
+  copy, summarize, or commit anything from here.**
 - `artifacts/` — disposable PKMS runtime byproducts (caches, derived data).
 - `config/` — local, non-secret configuration. Machine-specific.
 - `logs/` — durable operational records (decision logs, run summaries).
@@ -30,7 +34,8 @@ repository:
 - Work inside `software/`.
 - Use `software/` as the Git root.
 - Follow `software/CLAUDE.md` and `software/AGENTS.md`.
-- Do not copy `vault/`, `inbox/`, `secrets/`, `artifacts/`, `config/`, or `logs/` content into `software/`.
+- Do not copy `vault/`, `inbox/`, `secrets/`, `artifacts/`, `config/`, or
+  `logs/` content into `software/`.
 - Respect the software repo pre-commit guard.
 - Do not bypass hooks with `--no-verify` unless explicitly instructed.
 
@@ -50,5 +55,7 @@ local-machine organization:
 
 - Keep changes simple and inspectable.
 - Do not ingest real personal data until explicitly asked.
-- Do not implement integrations requiring real credentials until explicitly asked.
-- If a task could affect both `software/` and private local areas, explain the boundary before acting.
+- Do not implement integrations requiring real credentials until explicitly
+  asked.
+- If a task could affect both `software/` and private local areas, explain the
+  boundary before acting.

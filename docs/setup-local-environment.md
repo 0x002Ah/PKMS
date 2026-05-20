@@ -29,7 +29,7 @@ repository; versioning belongs inside the individual subdirectories.
 ### 2. Clone this repository into `software/`
 
 ```sh
-git clone <this-repo-url> ~/PKMS/software
+git clone {this-repo-url} ~/PKMS/software
 ```
 
 ### 3. Install the pre-commit guard
