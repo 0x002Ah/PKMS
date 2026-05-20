@@ -49,11 +49,21 @@ cd ~/PKMS/software
 
 ### 4. Add the local-root agent instructions
 
-Copy the template at
+Copy the primary agent-agnostic template at
+[`software/system/templates/local-root-AGENTS.md`](../system/templates/local-root-AGENTS.md)
+to `~/PKMS/AGENTS.md`.
+This file is read by any agent, local executor, or script working from the
+PKMS root to learn the operating modes and privacy boundaries.
+
+```sh
+cp ~/PKMS/software/system/templates/local-root-AGENTS.md ~/PKMS/AGENTS.md
+```
+
+If you use Claude Code, also copy the adapter at
 [`software/system/templates/local-root-CLAUDE.md`](../system/templates/local-root-CLAUDE.md)
 to `~/PKMS/CLAUDE.md`.
-Any agent working from the PKMS root reads this file to learn the operating
-modes and privacy boundaries.
+The adapter is a short pointer to `~/PKMS/AGENTS.md`; the AGENTS file
+remains the source of truth.
 
 ```sh
 cp ~/PKMS/software/system/templates/local-root-CLAUDE.md ~/PKMS/CLAUDE.md
